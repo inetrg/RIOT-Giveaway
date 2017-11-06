@@ -7,6 +7,8 @@ a STM32F103C8T6 CPU running at 72MHz, it has 64KB flash and 20KB SRAM, more
 information can be found in the official [datasheet]. The following
 provides an introduction on how to use the board together with RIOT.
 
+![img:bluepill](/doc/bluepill.png)
+
 ## What else do you need
 
 To start using and developing with the embedded device and RIOT you'll need
@@ -60,7 +62,7 @@ Found DFU: [1d50:6017] ver=0100, devnum=9, cfg=1, intf=0, path="20-1", alt=0, na
 you need to connect pin `B1` to ground (`G`) and press reset to stop bootloader
 from loading an existing firmware:
 
-![bootloader](/doc/bootloader.png)
+![img:bootloader](/doc/bootloader.png)
 
 * build and flash the Morse code example onto a board:
 
@@ -81,7 +83,7 @@ can decode it. Note, there is a *Morse code cheat sheet* in the subdirectory
 and see the morse code printed, see [morse README.md](/morse/README.md) for
 further information. Connect the USB-to-UART adapter as follows
 
-![USB-to-UART](/doc/shell.png)
+![img:USB-to-UART](/doc/shell.png)
 
 * afterwards run `make term` to start the shell.
 
