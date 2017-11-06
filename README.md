@@ -21,7 +21,7 @@ Further we recommend to have:
 * basic knowledge of the C/C++ programming language
 
 To better get to know RIOT and setup the required toolchains please have a look
-at the [RIOT Tutorials][Tutorials] and also [RIOT Wiki][Wiki]. Specifically,
+at the [RIOT Tutorials][Tutorials] and also the [RIOT Wiki][Wiki]. Specifically,
 the tutorials show how to easily setup an initial development environment using
 Vagrant and VirtualBox - the latest RIOT VM has all required tools to get you
 started.
@@ -29,10 +29,11 @@ started.
 ## Quick start guide
 
 The following steps assume a working toolchain setup with `arm-none-eabi-gcc`
-to compile the code and `dfu-util` for flashing. Optionally, you need Python 3
-with `pyserial` to connect to the RIOT shell on the board via USB-to-UART.
+to compile the code and `dfu-util` for flashing. Optionally, Python 3 with the
+`pyserial` package is needed to access RIOT shell on the board connected via
+an USB-to-UART adapter.
 
-* clone this repository and initialise submodules:
+* First, clone this repository and initialise submodules:
 
 ```
 git clone https://github.com/inetrg/NdW-2017
@@ -41,8 +42,12 @@ git submodule init
 git submodule update
 ```
 
-* to check if the board is ready, run `dfu-util -l`.
-Output of the command should be similar to:
+* This will download the source code and initialise a copy of RIOT as a
+submodule, you can also use a different RIOT clone by setting `RIOTBASE` as
+an environment variable.
+
+* Afterwards, check if the board is ready, therefore run `dfu-util -l` on the
+command line. Output of the command should be similar to:
 
 ```
 $ dfu-util -l
@@ -58,13 +63,13 @@ Found Runtime: [05ac:828b] ver=0143, devnum=5, cfg=1, intf=3, path="29-3", alt=0
 Found DFU: [1d50:6017] ver=0100, devnum=9, cfg=1, intf=0, path="20-1", alt=0, name="@Internal Flash   /0x08000000/8*001Ka,056*001Kg", serial="B5EB9BE2"
 ```
 
-* if no device with `[1d50:6017]` or `[1d50:6018]` is visible (see last line),
+* If no device with `[1d50:6017]` or `[1d50:6018]` is visible (see last line),
 you need to connect pin `B1` to ground (`G`) and press reset to stop bootloader
 from loading an existing firmware:
 
 ![img:bootloader](/doc/bootloader.png)
 
-* build and flash the Morse code example onto a board:
+* Finally, build and flash the Morse code example onto a board:
 
 ```
 cd morse
@@ -74,18 +79,19 @@ PROGRAMMER=dfu-util make clean all flash
 * *Note*: the above command only works for the *bluepill*, if you have another
 board try `BOARD=<name> make clean flash`.
 
-* afterwards press the reset button. The onboard LED should start blinking,
-it morses the given text. Default is `Hello World this is RIOT`, try if you
-can decode it. Note, there is a *Morse code cheat sheet* in the subdirectory
-[doc](/doc/morse_code.pdf).
+* Afterwards press the reset button. The onboard LED should start blinking,
+it morses a given text, the default is `Hello World this is RIOT`. Try if you
+can decode it on your own,  note: there is a *Morse code cheat sheet* in the
+subdirectory [doc](/doc/morse_code.pdf).
 
-* optionally you can connect the USB-to-UART adapter to access the RIOT shell
+* Optionally, you can connect an USB-to-UART adapter to access the RIOT shell
 and see the morse code printed, see [morse README.md](/morse/README.md) for
 further information. Connect the USB-to-UART adapter as follows
 
 ![img:USB-to-UART](/doc/shell.png)
 
-* afterwards run `make term` to start the shell.
+* Afterwards run `make term` which will start the RIOT shell. To exit the shell,
+either type `/exit` or press `ctrl + c` to terminate.
 
 ## Further Information and Resources
 
