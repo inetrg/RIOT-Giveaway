@@ -1,8 +1,10 @@
 # NdW-2017
 
-At the *Nacht des Wissens 2017* (night of sciences) the [iNET](https://www.inet.haw-hamburg.de)
-research group distributed a [RIOT](https://riot-os.org) starter pack containing
-an embedded development board, i.e., a STM32F103 *bluepill*. The following
+At the *Nacht des Wissens 2017* (night of sciences) the [iNET research group][iNET]
+of the [HAW Hamburg][HAW] distributed a [RIOT] starter pack containing an
+embedded development board, i.e., a STM32F103 *bluepill*. The board features
+a STM32F103C8T6 CPU running at 72MHz, it has 64KB flash and 20KB SRAM, more
+information can be found in the official [datasheet]. The following
 provides an introduction on how to use the board together with RIOT.
 
 ## What else do you need
@@ -16,9 +18,19 @@ Further we recommend to have:
 * a USB-to-UART/Serial adapter, cost around 2 EUR/USD, e.g. on eBay
 * basic knowledge of the C/C++ programming language
 
-## Quick starter
+To better get to know RIOT and setup the required toolchains please have a look
+at the [RIOT Tutorials][Tutorials] and also [RIOT Wiki][Wiki]. Specifically,
+the tutorials show how to easily setup an initial development environment using
+Vagrant and VirtualBox - the latest RIOT VM has all required tools to get you
+started.
 
-* clone this repository and initialize submodules:
+## Quick start guide
+
+The following steps assume a working toolchain setup with `arm-none-eabi-gcc`
+to compile the code and `dfu-util` for flashing. Optionally, you need Python 3
+with `pyserial` to connect to the RIOT shell on the board via USB-to-UART.
+
+* clone this repository and initialise submodules:
 
 ```
 git clone https://github.com/inetrg/NdW-2017
@@ -75,16 +87,24 @@ further information. Connect the USB-to-UART adapter as follows
 
 ## Getting to know RIOT
 
-* [RIOT Tutorials](https://github.com/RIOT-OS/Tutorials)
-* [RIOT Wiki](https://github.com/RIOT-OS/RIOT/Wiki)
-
-You may also join the RIOT [user](https://lists.riot-os.org/mailman/listinfo/users)
-and/or [developer](https://lists.riot-os.org/mailman/listinfo/devel) mailing lists.
 
 
 ## Further Information and Resources
 
-* the [STM32duino Wiki](http://wiki.stm32duino.com/index.php?title=Blue_Pill)
-gives a good overview on the *bluepill* features and specifications.
-* also have a look at the official [datasheet](http://www.st.com/resource/en/datasheet/stm32f103c8.pdf)
-for the STM32F103 MCU.
+You will find useful information in
+
+* the [STM32duino Wiki][bluepill], which gives a good overview on the *bluepill*
+basic features and specifications.
+* and the official [datasheet] for the STM32F103 MCU.
+
+You may also join the RIOT [user](https://lists.riot-os.org/mailman/listinfo/users)
+and/or [developer](https://lists.riot-os.org/mailman/listinfo/devel) mailing lists.
+
+[HAW]:  http://www.haw-hamburg.de
+[iNET]: https://www.inet.haw-hamburg.de
+[RIOT]: https://riot-os.org
+[Tutorials]: https://github.com/RIOT-OS/Tutorials
+[Wiki]: https://github.com/RIOT-OS/RIOT/Wiki
+
+[bluepill]: http://wiki.stm32duino.com/index.php?title=Blue_Pill
+[datasheet]: http://www.st.com/resource/en/datasheet/stm32f103c8.pdf
