@@ -87,10 +87,6 @@ further information. Connect the USB-to-UART adapter as follows
 
 * afterwards run `make term` to start the shell.
 
-## Getting to know RIOT
-
-
-
 ## Further Information and Resources
 
 You will find useful information in
