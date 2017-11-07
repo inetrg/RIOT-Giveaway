@@ -32,7 +32,7 @@ First, you need to setup a working RIOT toolchain with `arm-none-eabi-gcc`
 to compile the code and `dfu-util` for flashing. Optionally, Python 3 with the
 `pyserial` package is needed to access RIOT shell on the board connected via
 an USB-to-UART adapter. RIOT offers a fully prepared virtual machine to begin
-with. Just follow these steps:
+with, just follow these steps:
 
 * Install [git], [Vagrant], and [VirtualBox] on your computer, you'll find
 install packages for Windows and macOS on referenced websites. If you're using
@@ -114,22 +114,30 @@ further information. Connect the USB-to-UART adapter as follows
 * Afterwards run `make term` which will start the RIOT shell. To exit the shell,
 either type `/exit` or press `ctrl + c` to terminate.
 
-## Further Information and Resources
+## Information and Resources
 
-You will find useful information in
+You will find useful information on the board in
 
 * the [STM32duino Wiki][bluepill], which gives a good overview on the *bluepill*
 basic features and specifications.
 * and the official [datasheet] for the STM32F103 MCU.
 
-You may also join the RIOT [user](https://lists.riot-os.org/mailman/listinfo/users)
+Further information on RIOT are available on line:
+
+* the RIOT-OS [homepage][RIOT] and on [Github].
+* the RIOT [Tutorials] provide a good starting point to get know RIOT.
+* also checkout RIOTs [Wiki] pages and the [Doxygen] documentation.
+
+We also recommend to join the RIOT [user](https://lists.riot-os.org/mailman/listinfo/users)
 and/or [developer](https://lists.riot-os.org/mailman/listinfo/devel) mailing lists.
 
 [HAW]:  http://www.haw-hamburg.de
 [iNET]: https://www.inet.haw-hamburg.de
 [RIOT]: https://riot-os.org
+[Github]: https://github.com/RIOT-OS/RIOT
 [Tutorials]: https://github.com/RIOT-OS/Tutorials
 [Wiki]: https://github.com/RIOT-OS/RIOT/Wiki
+[Doxygen]: https://doc.riot-os.org
 
 [bluepill]: http://wiki.stm32duino.com/index.php?title=Blue_Pill
 [datasheet]: http://www.st.com/resource/en/datasheet/stm32f103c8.pdf
