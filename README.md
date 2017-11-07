@@ -28,12 +28,33 @@ started.
 
 ## Quick start guide
 
-The following steps assume a working toolchain setup with `arm-none-eabi-gcc`
+First, you need to setup a working RIOT toolchain with `arm-none-eabi-gcc`
 to compile the code and `dfu-util` for flashing. Optionally, Python 3 with the
 `pyserial` package is needed to access RIOT shell on the board connected via
-an USB-to-UART adapter.
+an USB-to-UART adapter. RIOT offers a fully prepared virtual machine to begin
+with. Just follow these steps:
 
-* First, clone this repository and initialise submodules:
+* Install [git], [Vagrant], and [VirtualBox] on your computer, you'll find
+install packages for Windows and macOS on referenced websites. If you're using
+Linux use the package managing system of you distribution, e.g. `apt` for
+Debian/Ubuntu, or `yum` for CentOS/Fedora/RedHat. For VirtualBox you also need
+to install the generic [extension pack][vboxext].
+
+* Afterwards clone the RIOT Github repository and create a VM using Vagrant.
+Open a command line (terminal, or shell) and run:
+
+```
+git clone https://github.com/RIOT-OS/RIOT
+cd RIOT
+vagrant up
+```
+
+* It takes sometime to download and create the RIOT VM, when finished login to
+the VM running `vagrant ssh` and proceed with the steps below.
+
+----
+
+* Clone this repository and initialise submodules:
 
 ```
 git clone https://github.com/inetrg/NdW-2017
@@ -112,3 +133,8 @@ and/or [developer](https://lists.riot-os.org/mailman/listinfo/devel) mailing lis
 
 [bluepill]: http://wiki.stm32duino.com/index.php?title=Blue_Pill
 [datasheet]: http://www.st.com/resource/en/datasheet/stm32f103c8.pdf
+
+[git]: https://git-scm.com/downloads
+[Vagrant]: https://www.vagrantup.com/downloads.html
+[VirtualBox]: https://www.virtualbox.org/wiki/Downloads
+[vboxext]: http://download.virtualbox.org/virtualbox/5.2.0/Oracle_VM_VirtualBox_Extension_Pack-5.2.0-118431.vbox-extpack
