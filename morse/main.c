@@ -71,7 +71,7 @@ static const umorse_out_t print = {
     .params = NULL
 };
 
-static const char text[] = "Hello World, this is RIOT!";
+static const char text[] = "Hello World this is RIOT";
 
 static uint8_t code[CODE_LEN];
 
