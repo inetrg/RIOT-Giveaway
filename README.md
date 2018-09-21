@@ -1,11 +1,11 @@
-# NdW-2017
+# RIOT Giveaway
 
-At the *Nacht des Wissens 2017* (night of sciences) the [iNET research group][iNET]
-of the [HAW Hamburg][HAW] distributed a [RIOT] starter pack containing an
-embedded development board, i.e., a STM32F103 *bluepill*. The board features
-a STM32F103C8T6 CPU running at 72MHz, it has 64KB flash and 20KB SRAM, more
-information can be found in the official [datasheet]. The following
-provides an introduction on how to use the board together with RIOT.
+At various public, scientific events, such as the *Hamburger Nacht des Wissens*,
+the [iNET research group][iNET] of the [HAW Hamburg][HAW] distributed a [RIOT]
+starter pack containing an embedded development board, i.e., a STM32 *bluepill*.
+The board features a STM32F103C8T6 CPU running at 72MHz, it has 64KB flash and
+20KB SRAM, more information can be found in the official [datasheet]. The
+following provides an introduction on how to use the board together with RIOT.
 
 ![img:bluepill](/doc/bluepill.png)
 
@@ -35,10 +35,11 @@ an USB-to-UART adapter. RIOT offers a fully prepared virtual machine to begin
 with, just follow these steps:
 
 * Install [git], [Vagrant], and [VirtualBox] on your computer, you'll find
-install packages for Windows and macOS on referenced websites. If you're using
-Linux use the package managing system of you distribution, e.g. `apt` for
-Debian/Ubuntu, or `yum` for CentOS/Fedora/RedHat. For VirtualBox you also need
-to install the generic [extension pack][vboxext].
+install packages for Windows and macOS on referenced websites. For VirtualBox
+you also need to install the generic [extension pack][vboxext].
+Linux users should use  the package managing system of their distribution, e.g.
+`apt` for Debian/Ubuntu, or `yum` for CentOS/Fedora/RedHat. Alternatively, you
+can also use [Docker] - see [riotdocker] for further information.
 
 * Afterwards clone the RIOT Github repository and create a VM using Vagrant.
 Open a command line (terminal, or shell) and run:
@@ -71,7 +72,7 @@ an environment variable.
 command line. Output of the command should be similar to:
 
 ```
-$ dfu-util -l
+$ dfu-util --list
 dfu-util 0.9
 
 Copyright 2005-2009 Weston Schmidt, Harald Welte and OpenMoko Inc.
@@ -80,15 +81,20 @@ This program is Free Software and has ABSOLUTELY NO WARRANTY
 Please report bugs to http://sourceforge.net/p/dfu-util/tickets/
 
 Deducing device DFU version from functional descriptor length
-Found Runtime: [05ac:828b] ver=0143, devnum=5, cfg=1, intf=3, path="29-3", alt=0, name="UNKNOWN", serial="UNKNOWN"
-Found DFU: [1d50:6017] ver=0100, devnum=9, cfg=1, intf=0, path="20-1", alt=0, name="@Internal Flash   /0x08000000/8*001Ka,056*001Kg", serial="B5EB9BE2"
+Found Runtime: [05ac:828b] ver=0144, devnum=5, cfg=1, intf=3, path="29-1.8.1.3", alt=0, name="UNKNOWN", serial="UNKNOWN"
+Found DFU: [1eaf:0003] ver=0201, devnum=30, cfg=1, intf=0, path="20-3.2", alt=2, name="STM32duino bootloader v1.0  Upload to Flash 0x8002000", serial="LLM 003"
+Found DFU: [1eaf:0003] ver=0201, devnum=30, cfg=1, intf=0, path="20-3.2", alt=1, name="STM32duino bootloader v1.0  Upload to Flash 0x8005000", serial="LLM 003"
+Found DFU: [1eaf:0003] ver=0201, devnum=30, cfg=1, intf=0, path="20-3.2", alt=0, name="STM32duino bootloader v1.0  ERROR. Upload to RAM not supported.", serial="LLM 003"
 ```
 
-* If no device with `[1d50:6017]` or `[1d50:6018]` is visible (see last line),
-you need to connect pin `B1` to ground (`G`) and press reset to stop bootloader
-from loading an existing firmware:
+* If no device with `[1eaf:0003]` is visible (there should be 3 as shown above)
+you need to set the jumper of boot pin 1 to 1 and press reset to stop bootloader
+from loading an existing firmware, see also following picture.
 
-![img:bootloader](/doc/bootloader.png)
+![img:bootloader](/doc/bootloader_new.png)
+
+* *Note*: if you see a device with `[1d50:6017]` or `[1d50:6018]` please refer
+to [ndw17.md](ndw17.md).
 
 * Finally, build and flash the Morse code example onto a board:
 
@@ -99,6 +105,8 @@ PROGRAMMER=dfu-util make clean all flash
 
 * *Note*: the above command only works for the *bluepill*, if you have another
 board try `BOARD=<name> make clean flash`.
+
+* *Note*: remember to reset the boot pin 1 to 0, if necessary.
 
 * Afterwards press the reset button. The onboard LED should start blinking,
 it morses a given text, the default is `Hello World this is RIOT`. Try if you
@@ -142,6 +150,8 @@ and/or [developer](https://lists.riot-os.org/mailman/listinfo/devel) mailing lis
 [bluepill]: http://wiki.stm32duino.com/index.php?title=Blue_Pill
 [datasheet]: http://www.st.com/resource/en/datasheet/stm32f103c8.pdf
 
+[Docker]: https://www.docker.com
+[riotdocker]: https://github.com/RIOT-OS/riotdocker
 [git]: https://git-scm.com/downloads
 [Vagrant]: https://www.vagrantup.com/downloads.html
 [VirtualBox]: https://www.virtualbox.org/wiki/Downloads
